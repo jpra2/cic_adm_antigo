@@ -291,8 +291,8 @@ all_volumes=M1.all_volumes
 cent_tag = M1.cent_tag
 all_centroids = M1.vols_centroids
 
-box_volumes_d = np.array([np.array([0.0, 0.0, 17.0]), np.array([18.0, 18.0, 18.0])])
-box_volumes_n = np.array([np.array([26.0, 0.0, 0.0]), np.array([27.0, 27.0, 9.0])])
+box_volumes_d = np.array([np.array([0.0, 0.0, 0.0]), np.array([27.0, 27.0, 27.0])])
+box_volumes_n = np.array([np.array([26.0, 0.0, 0.0]), np.array([27.0, 27.0, 27.0])])
 
 # volumes com pressao prescrita
 inds0 = np.where(all_centroids[:,0] > box_volumes_d[0,0])[0]
@@ -306,21 +306,21 @@ c2 = set(inds0) & set(inds1) & set(inds2)
 inds_vols_d = list(c1 & c2)
 volumes_d = np.array(M1.all_volumes)[inds_vols_d]
 
-# volumes com vazao prescrita
+volumes com vazao prescrita
 
-# inds0 = np.where(all_centroids[:,0] > box_volumes_n[0,0])[0]
-# inds1 = np.where(all_centroids[:,1] > box_volumes_n[0,1])[0]
-# inds2 = np.where(all_centroids[:,2] > box_volumes_n[0,2])[0]
-# c1 = set(inds0) & set(inds1) & set(inds2)
-# inds0 = np.where(all_centroids[:,0] < box_volumes_n[1,0])[0]
-# inds1 = np.where(all_centroids[:,1] < box_volumes_n[1,1])[0]
-# inds2 = np.where(all_centroids[:,2] < box_volumes_n[1,2])[0]
-# c2 = set(inds0) & set(inds1) & set(inds2)
-# inds_vols_n = list(c1 & c2)
-# volumes_n = np.array(M1.all_volumes)[inds_vols_n]
+inds0 = np.where(all_centroids[:,0] > box_volumes_n[0,0])[0]
+inds1 = np.where(all_centroids[:,1] > box_volumes_n[0,1])[0]
+inds2 = np.where(all_centroids[:,2] > box_volumes_n[0,2])[0]
+c1 = set(inds0) & set(inds1) & set(inds2)
+inds0 = np.where(all_centroids[:,0] < box_volumes_n[1,0])[0]
+inds1 = np.where(all_centroids[:,1] < box_volumes_n[1,1])[0]
+inds2 = np.where(all_centroids[:,2] < box_volumes_n[1,2])[0]
+c2 = set(inds0) & set(inds1) & set(inds2)
+inds_vols_n = list(c1 & c2)
+volumes_n = np.array(M1.all_volumes)[inds_vols_n]
 
-inds_vols_n = []
-volumes_n = []
+# inds_vols_n = []
+# volumes_n = []
 
 
 inds_pocos = inds_vols_d + inds_vols_n
@@ -333,18 +333,18 @@ l1=3
 l2=9
 print("leu")
 # Posição aproximada de cada completação
-Cent_weels=[[17.5, 17.5, 17.5],[17.5, 17.5, 17.5]]
+Cent_weels=[[0.0, 0.0, 0.0]]
 Cent_weels = np.array([np.array(c) for c in Cent_weels])
 Cent_weels = np.append(Cent_weels, centroids_pocos, axis=0)
 Cent_weels = np.unique(Cent_weels, axis=0)
 
 # Distância, em relação ao poço, até onde se usa malha fina
-r0=.9
+r0=1.0
 
 # volumes_d = []
 # volumes_n = []
 # Distância, em relação ao poço, até onde se usa malha intermediária (Ainda não implementado)
-r1=2
+r1=1
 #--------------fim dos parâmetros de entrada------------------------------------
 def Min_Max(e):
     verts = M1.mb.get_connectivity(e)     #Vértices de um elemento da malha fina
